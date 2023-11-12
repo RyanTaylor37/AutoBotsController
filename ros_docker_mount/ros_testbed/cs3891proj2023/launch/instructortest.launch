@@ -1,0 +1,10 @@
+<launch>
+  <node pkg="rosbag" type="play" name="rosbag_playback" args="/ros/catkin_ws/mytest.bag"/>
+  
+  <node pkg="profproject" type="profproject" name="profproject_node">
+	<remap from="/car/state/vel_x" to="/vel_x"/>
+  </node>
+
+  <node pkg="carsimplesimulink" type="carsimplesimulink" name="carsimplesimulink_node"/>
+  
+</launch>
