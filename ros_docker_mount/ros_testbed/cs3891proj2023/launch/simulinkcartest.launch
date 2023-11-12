@@ -16,6 +16,9 @@
   <!-- sets the initial position of the lead car. -->
   <param name="/leadcar/x0" type="double" value="40.0" />
 
+  <!-- sets the optimal lead distance of the lead car. -->
+  <param name="/optimal_lead_distance/x0" type="double" value="10.0" />
+
   <node pkg="rostopic" type="rostopic" name="rostopic_pub_node" output="screen" args="pub -r 20 $(arg topic_name) std_msgs/Float64 'data: $(arg message)'" />
   
   <!-- By putting this car into a namespace, we keep the variables clean -->
