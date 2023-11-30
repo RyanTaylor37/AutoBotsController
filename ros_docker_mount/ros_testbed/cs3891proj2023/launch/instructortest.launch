@@ -1,7 +1,13 @@
 <launch>
   <node pkg="rosbag" type="play" name="rosbag_playback" args="/ros/catkin_ws/mytest.bag"/>
   
-  <node pkg="profproject" type="profproject" name="profproject_node">
+   <!-- sets the optimal time gap from the lead car. -->
+  <param name="/optimal_time_gap/t0" type="double" value="3.0" />
+  
+   <!-- sets the speed limit for the road -->
+  <param name="/speed_limit/v0" type="double" value="80.0" />
+  
+  <node pkg="autobotscontroller" type="autobotscontroller" name="autobotscontroller_node">
 	<remap from="/car/state/vel_x" to="/vel_x"/>
   </node>
 

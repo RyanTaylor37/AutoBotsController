@@ -17,7 +17,10 @@
   <param name="/leadcar/x0" type="double" value="40.0" />
 
   <!-- sets the optimal lead distance of the lead car. -->
-  <param name="/optimal_lead_distance/x0" type="double" value="10.0" />
+  <param name="/optimal_time_gap/t0" type="double" value="3.0" />
+  
+   <!-- sets the optimal lead distance of the lead car. -->
+  <param name="/speed_limit/v0" type="double" value="80.0" />
 
   <node pkg="rostopic" type="rostopic" name="rostopic_pub_node" output="screen" args="pub -r 20 $(arg topic_name) std_msgs/Float64 'data: $(arg message)'" />
   
