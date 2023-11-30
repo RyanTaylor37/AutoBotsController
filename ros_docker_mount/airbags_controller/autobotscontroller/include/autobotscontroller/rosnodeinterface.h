@@ -3,9 +3,9 @@
 //
 // Code generated for Simulink model 'autobotscontroller'.
 //
-// Model version                  : 1.10
+// Model version                  : 1.12
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Thu Nov 30 00:03:23 2023
+// C/C++ source code generated on : Thu Nov 30 11:27:43 2023
 //
 
 #ifndef _ROS_MATLAB_NODEINTERFACE_

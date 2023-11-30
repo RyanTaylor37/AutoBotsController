@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'autobotscontroller'.
 //
-// Model version                  : 1.10
+// Model version                  : 1.12
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Thu Nov 30 00:03:15 2023
+// C/C++ source code generated on : Thu Nov 30 11:27:39 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Generic->Unspecified (assume 32-bit Generic)
@@ -161,11 +161,11 @@ void autobotscontroller_step(void)
     rtb_NotEqual = Sub_autobotscontroller_36.getLatestMessage(&b_varargout_2);
 
     // Outputs for Enabled SubSystem: '<S4>/Enabled Subsystem' incorporates:
-    //   EnablePort: '<S116>/Enable'
+    //   EnablePort: '<S114>/Enable'
 
     // Start for MATLABSystem: '<S4>/SourceBlock'
     if (rtb_NotEqual) {
-      // SignalConversion generated from: '<S116>/In1'
+      // SignalConversion generated from: '<S114>/In1'
       autobotscontroller_B.In1_b = b_varargout_2;
     }
 
@@ -175,23 +175,6 @@ void autobotscontroller_step(void)
 
     // SignalConversion generated from: '<Root>/Bus Selector'
     rtb_Data = autobotscontroller_B.In1_b.Data;
-
-    // Outputs for Atomic SubSystem: '<Root>/Subscribe2'
-    // MATLABSystem: '<S6>/SourceBlock'
-    rtb_NotEqual = Sub_autobotscontroller_121.getLatestMessage(&b_varargout_2);
-
-    // Outputs for Enabled SubSystem: '<S6>/Enabled Subsystem' incorporates:
-    //   EnablePort: '<S118>/Enable'
-
-    // Start for MATLABSystem: '<S6>/SourceBlock'
-    if (rtb_NotEqual) {
-      // SignalConversion generated from: '<S118>/In1'
-      autobotscontroller_B.In1_c = b_varargout_2;
-    }
-
-    // End of Start for MATLABSystem: '<S6>/SourceBlock'
-    // End of Outputs for SubSystem: '<S6>/Enabled Subsystem'
-    // End of Outputs for SubSystem: '<Root>/Subscribe2'
 
     // If: '<S1>/If1' incorporates:
     //   SignalConversion generated from: '<Root>/Bus Selector'
@@ -206,47 +189,31 @@ void autobotscontroller_step(void)
     rtb_NotEqual = Sub_autobotscontroller_48.getLatestMessage(&b_varargout_2);
 
     // Outputs for Enabled SubSystem: '<S5>/Enabled Subsystem' incorporates:
-    //   EnablePort: '<S117>/Enable'
+    //   EnablePort: '<S115>/Enable'
 
     // Start for MATLABSystem: '<S5>/SourceBlock'
     if (rtb_NotEqual) {
-      // SignalConversion generated from: '<S117>/In1'
-      autobotscontroller_B.In1_p = b_varargout_2;
+      // SignalConversion generated from: '<S115>/In1'
+      autobotscontroller_B.In1 = b_varargout_2;
     }
 
     // End of Start for MATLABSystem: '<S5>/SourceBlock'
     // End of Outputs for SubSystem: '<S5>/Enabled Subsystem'
     // End of Outputs for SubSystem: '<Root>/Subscribe1'
 
-    // Outputs for Atomic SubSystem: '<Root>/Subscribe3'
-    // MATLABSystem: '<S7>/SourceBlock'
-    rtb_NotEqual = Sub_autobotscontroller_123.getLatestMessage(&b_varargout_2);
-
-    // Outputs for Enabled SubSystem: '<S7>/Enabled Subsystem' incorporates:
-    //   EnablePort: '<S119>/Enable'
-
-    // Start for MATLABSystem: '<S7>/SourceBlock'
-    if (rtb_NotEqual) {
-      // SignalConversion generated from: '<S119>/In1'
-      autobotscontroller_B.In1 = b_varargout_2;
-    }
-
-    // End of Start for MATLABSystem: '<S7>/SourceBlock'
-    // End of Outputs for SubSystem: '<S7>/Enabled Subsystem'
-    // End of Outputs for SubSystem: '<Root>/Subscribe3'
-
     // If: '<S1>/If1' incorporates:
-    //   Constant: '<S9>/Constant'
+    //   Constant: '<Root>/Time Gap'
+    //   Constant: '<S7>/Constant'
     //   Product: '<S1>/Divide'
     //   SignalConversion generated from: '<Root>/Bus Selector'
     //   Sum: '<S1>/Subtract'
-    //   Sum: '<S9>/Add'
+    //   Sum: '<S7>/Add'
 
     if (autobotscontroller_DW.If1_ActiveSubsystem == 0) {
       tmp_1 = autobotscontroller_B.In1_b.Data;
     } else {
       // Outputs for IfAction SubSystem: '<S1>/Null_Handler2' incorporates:
-      //   ActionPort: '<S9>/Action Port'
+      //   ActionPort: '<S7>/Action Port'
 
       tmp_1 = autobotscontroller_B.In1_b.Data +
         autobotscontroller_P.Constant_Value_c;
@@ -254,8 +221,8 @@ void autobotscontroller_step(void)
       // End of Outputs for SubSystem: '<S1>/Null_Handler2'
     }
 
-    autobotscontroller_B.error = autobotscontroller_B.In1_p.Data / tmp_1 -
-      autobotscontroller_B.In1.Data;
+    autobotscontroller_B.error = autobotscontroller_B.In1.Data / tmp_1 -
+      autobotscontroller_P.TimeGap_Value;
   }
 
   // If: '<S1>/If'
@@ -292,7 +259,7 @@ void autobotscontroller_step(void)
   if (rtAction == 0) {
     if (rtPrevAction != 0) {
       // Enable for IfAction SubSystem: '<S1>/Switch Case: Car Hunter Mode' incorporates:
-      //   ActionPort: '<S13>/Action Port'
+      //   ActionPort: '<S11>/Action Port'
 
       // Enable for If: '<S1>/If'
       (void) memset(&(autobotscontroller_XDis.Integrator_CSTATE_e), 0,
@@ -302,100 +269,100 @@ void autobotscontroller_step(void)
     }
 
     // Outputs for IfAction SubSystem: '<S1>/Switch Case: Car Hunter Mode' incorporates:
-    //   ActionPort: '<S13>/Action Port'
+    //   ActionPort: '<S11>/Action Port'
 
-    // Gain: '<S102>/Filter Coefficient' incorporates:
-    //   Gain: '<S93>/Derivative Gain'
-    //   Integrator: '<S94>/Filter'
-    //   Sum: '<S94>/SumD'
+    // Gain: '<S100>/Filter Coefficient' incorporates:
+    //   Gain: '<S91>/Derivative Gain'
+    //   Integrator: '<S92>/Filter'
+    //   Sum: '<S92>/SumD'
 
     autobotscontroller_B.FilterCoefficient_b =
       (autobotscontroller_P.Car_Hunter_PID_D * autobotscontroller_B.error -
        autobotscontroller_X.Filter_CSTATE_f) *
       autobotscontroller_P.Car_Hunter_PID_N;
 
-    // Sum: '<S108>/Sum' incorporates:
-    //   Gain: '<S104>/Proportional Gain'
-    //   Integrator: '<S99>/Integrator'
+    // Sum: '<S106>/Sum' incorporates:
+    //   Gain: '<S102>/Proportional Gain'
+    //   Integrator: '<S97>/Integrator'
 
     rtb_Sum_j = (autobotscontroller_P.Car_Hunter_PID_P *
                  autobotscontroller_B.error +
                  autobotscontroller_X.Integrator_CSTATE_e) +
       autobotscontroller_B.FilterCoefficient_b;
 
-    // DeadZone: '<S92>/DeadZone'
+    // DeadZone: '<S90>/DeadZone'
     if (rtb_Sum_j > autobotscontroller_P.Car_Hunter_PID_UpperSaturationL) {
-      // Gain: '<S96>/Integral Gain'
+      // Gain: '<S94>/Integral Gain'
       autobotscontroller_B.Switch_k = rtb_Sum_j -
         autobotscontroller_P.Car_Hunter_PID_UpperSaturationL;
     } else if (rtb_Sum_j >= autobotscontroller_P.Car_Hunter_PID_LowerSaturationL)
     {
-      // Gain: '<S96>/Integral Gain'
+      // Gain: '<S94>/Integral Gain'
       autobotscontroller_B.Switch_k = 0.0;
     } else {
-      // Gain: '<S96>/Integral Gain'
+      // Gain: '<S94>/Integral Gain'
       autobotscontroller_B.Switch_k = rtb_Sum_j -
         autobotscontroller_P.Car_Hunter_PID_LowerSaturationL;
     }
 
-    // End of DeadZone: '<S92>/DeadZone'
+    // End of DeadZone: '<S90>/DeadZone'
 
-    // RelationalOperator: '<S90>/NotEqual' incorporates:
-    //   Gain: '<S90>/ZeroGain'
+    // RelationalOperator: '<S88>/NotEqual' incorporates:
+    //   Gain: '<S88>/ZeroGain'
 
     rtb_NotEqual = (autobotscontroller_P.ZeroGain_Gain * rtb_Sum_j !=
                     autobotscontroller_B.Switch_k);
 
-    // Signum: '<S90>/SignPreSat'
+    // Signum: '<S88>/SignPreSat'
     if (rtIsNaN(autobotscontroller_B.Switch_k)) {
-      // DataTypeConversion: '<S90>/DataTypeConv1'
+      // DataTypeConversion: '<S88>/DataTypeConv1'
       tmp_1 = (rtNaN);
     } else if (autobotscontroller_B.Switch_k < 0.0) {
-      // DataTypeConversion: '<S90>/DataTypeConv1'
+      // DataTypeConversion: '<S88>/DataTypeConv1'
       tmp_1 = -1.0;
     } else {
-      // DataTypeConversion: '<S90>/DataTypeConv1'
+      // DataTypeConversion: '<S88>/DataTypeConv1'
       tmp_1 = (autobotscontroller_B.Switch_k > 0.0);
     }
 
-    // End of Signum: '<S90>/SignPreSat'
+    // End of Signum: '<S88>/SignPreSat'
 
-    // DataTypeConversion: '<S90>/DataTypeConv1'
+    // DataTypeConversion: '<S88>/DataTypeConv1'
     if (rtIsNaN(tmp_1)) {
       tmp_0 = 0;
     } else {
       tmp_0 = static_cast<int32_T>(fmod(tmp_1, 256.0));
     }
 
-    // Gain: '<S96>/Integral Gain'
+    // Gain: '<S94>/Integral Gain'
     autobotscontroller_B.Switch_k = autobotscontroller_P.Car_Hunter_PID_I *
       autobotscontroller_B.error;
 
-    // Signum: '<S90>/SignPreIntegrator'
+    // Signum: '<S88>/SignPreIntegrator'
     if (rtIsNaN(autobotscontroller_B.Switch_k)) {
-      // DataTypeConversion: '<S90>/DataTypeConv2'
+      // DataTypeConversion: '<S88>/DataTypeConv2'
       tmp_1 = (rtNaN);
     } else if (autobotscontroller_B.Switch_k < 0.0) {
-      // DataTypeConversion: '<S90>/DataTypeConv2'
+      // DataTypeConversion: '<S88>/DataTypeConv2'
       tmp_1 = -1.0;
     } else {
-      // DataTypeConversion: '<S90>/DataTypeConv2'
+      // DataTypeConversion: '<S88>/DataTypeConv2'
       tmp_1 = (autobotscontroller_B.Switch_k > 0.0);
     }
 
-    // End of Signum: '<S90>/SignPreIntegrator'
+    // End of Signum: '<S88>/SignPreIntegrator'
 
-    // DataTypeConversion: '<S90>/DataTypeConv2'
+    // DataTypeConversion: '<S88>/DataTypeConv2'
     if (rtIsNaN(tmp_1)) {
       tmp = 0;
     } else {
       tmp = static_cast<int32_T>(fmod(tmp_1, 256.0));
     }
 
-    // Logic: '<S90>/AND3' incorporates:
-    //   DataTypeConversion: '<S90>/DataTypeConv1'
-    //   DataTypeConversion: '<S90>/DataTypeConv2'
-    //   RelationalOperator: '<S90>/Equal1'
+    // Logic: '<S88>/AND3' incorporates:
+    //   DataTypeConversion: '<S88>/DataTypeConv1'
+    //   DataTypeConversion: '<S88>/DataTypeConv2'
+    //   RelationalOperator: '<S88>/Equal1'
 
     autobotscontroller_B.AND3_g = (rtb_NotEqual && ((tmp_0 < 0 ?
       static_cast<int32_T>(static_cast<int8_T>(-static_cast<int8_T>(static_cast<
@@ -403,23 +370,23 @@ void autobotscontroller_step(void)
       static_cast<int32_T>(static_cast<int8_T>(-static_cast<int8_T>
       (static_cast<uint8_T>(-static_cast<real_T>(tmp))))) : tmp)));
     if (rtmIsMajorTimeStep(autobotscontroller_M)) {
-      // Memory: '<S90>/Memory'
+      // Memory: '<S88>/Memory'
       autobotscontroller_B.Memory_d =
         autobotscontroller_DW.Memory_PreviousInput_g;
     }
 
-    // Switch: '<S90>/Switch'
+    // Switch: '<S88>/Switch'
     if (autobotscontroller_B.Memory_d) {
-      // Gain: '<S96>/Integral Gain' incorporates:
-      //   Constant: '<S90>/Constant1'
-      //   Switch: '<S90>/Switch'
+      // Gain: '<S94>/Integral Gain' incorporates:
+      //   Constant: '<S88>/Constant1'
+      //   Switch: '<S88>/Switch'
 
       autobotscontroller_B.Switch_k = autobotscontroller_P.Constant1_Value;
     }
 
-    // End of Switch: '<S90>/Switch'
+    // End of Switch: '<S88>/Switch'
 
-    // Saturate: '<S106>/Saturation'
+    // Saturate: '<S104>/Saturation'
     if (rtb_Sum_j > autobotscontroller_P.Car_Hunter_PID_UpperSaturationL) {
       // Merge: '<S1>/Merge'
       rtb_Sum_j = autobotscontroller_P.Car_Hunter_PID_UpperSaturationL;
@@ -429,12 +396,12 @@ void autobotscontroller_step(void)
       rtb_Sum_j = autobotscontroller_P.Car_Hunter_PID_LowerSaturationL;
     }
 
-    // End of Saturate: '<S106>/Saturation'
+    // End of Saturate: '<S104>/Saturation'
     // End of Outputs for SubSystem: '<S1>/Switch Case: Car Hunter Mode'
   } else {
     if (rtAction != rtPrevAction) {
       // Enable for IfAction SubSystem: '<S1>/Switch Case: Car Follower Mode' incorporates:
-      //   ActionPort: '<S12>/Action Port'
+      //   ActionPort: '<S10>/Action Port'
 
       // Enable for If: '<S1>/If'
       (void) memset(&(autobotscontroller_XDis.Integrator_CSTATE), 0,
@@ -444,100 +411,100 @@ void autobotscontroller_step(void)
     }
 
     // Outputs for IfAction SubSystem: '<S1>/Switch Case: Car Follower Mode' incorporates:
-    //   ActionPort: '<S12>/Action Port'
+    //   ActionPort: '<S10>/Action Port'
 
-    // Gain: '<S51>/Filter Coefficient' incorporates:
-    //   Gain: '<S42>/Derivative Gain'
-    //   Integrator: '<S43>/Filter'
-    //   Sum: '<S43>/SumD'
+    // Gain: '<S49>/Filter Coefficient' incorporates:
+    //   Gain: '<S40>/Derivative Gain'
+    //   Integrator: '<S41>/Filter'
+    //   Sum: '<S41>/SumD'
 
     autobotscontroller_B.FilterCoefficient =
       (autobotscontroller_P.Car_Follower_PID_D * autobotscontroller_B.error -
        autobotscontroller_X.Filter_CSTATE) *
       autobotscontroller_P.Car_Follower_PID_N;
 
-    // Sum: '<S57>/Sum' incorporates:
-    //   Gain: '<S53>/Proportional Gain'
-    //   Integrator: '<S48>/Integrator'
+    // Sum: '<S55>/Sum' incorporates:
+    //   Gain: '<S51>/Proportional Gain'
+    //   Integrator: '<S46>/Integrator'
 
     rtb_Sum_j = (autobotscontroller_P.Car_Follower_PID_P *
                  autobotscontroller_B.error +
                  autobotscontroller_X.Integrator_CSTATE) +
       autobotscontroller_B.FilterCoefficient;
 
-    // DeadZone: '<S41>/DeadZone'
+    // DeadZone: '<S39>/DeadZone'
     if (rtb_Sum_j > autobotscontroller_P.Car_Follower_PID_UpperSaturatio) {
-      // Gain: '<S45>/Integral Gain'
+      // Gain: '<S43>/Integral Gain'
       autobotscontroller_B.Switch = rtb_Sum_j -
         autobotscontroller_P.Car_Follower_PID_UpperSaturatio;
     } else if (rtb_Sum_j >= autobotscontroller_P.Car_Follower_PID_LowerSaturatio)
     {
-      // Gain: '<S45>/Integral Gain'
+      // Gain: '<S43>/Integral Gain'
       autobotscontroller_B.Switch = 0.0;
     } else {
-      // Gain: '<S45>/Integral Gain'
+      // Gain: '<S43>/Integral Gain'
       autobotscontroller_B.Switch = rtb_Sum_j -
         autobotscontroller_P.Car_Follower_PID_LowerSaturatio;
     }
 
-    // End of DeadZone: '<S41>/DeadZone'
+    // End of DeadZone: '<S39>/DeadZone'
 
-    // RelationalOperator: '<S39>/NotEqual' incorporates:
-    //   Gain: '<S39>/ZeroGain'
+    // RelationalOperator: '<S37>/NotEqual' incorporates:
+    //   Gain: '<S37>/ZeroGain'
 
     rtb_NotEqual = (autobotscontroller_P.ZeroGain_Gain_l * rtb_Sum_j !=
                     autobotscontroller_B.Switch);
 
-    // Signum: '<S39>/SignPreSat'
+    // Signum: '<S37>/SignPreSat'
     if (rtIsNaN(autobotscontroller_B.Switch)) {
-      // DataTypeConversion: '<S39>/DataTypeConv1'
+      // DataTypeConversion: '<S37>/DataTypeConv1'
       tmp_1 = (rtNaN);
     } else if (autobotscontroller_B.Switch < 0.0) {
-      // DataTypeConversion: '<S39>/DataTypeConv1'
+      // DataTypeConversion: '<S37>/DataTypeConv1'
       tmp_1 = -1.0;
     } else {
-      // DataTypeConversion: '<S39>/DataTypeConv1'
+      // DataTypeConversion: '<S37>/DataTypeConv1'
       tmp_1 = (autobotscontroller_B.Switch > 0.0);
     }
 
-    // End of Signum: '<S39>/SignPreSat'
+    // End of Signum: '<S37>/SignPreSat'
 
-    // DataTypeConversion: '<S39>/DataTypeConv1'
+    // DataTypeConversion: '<S37>/DataTypeConv1'
     if (rtIsNaN(tmp_1)) {
       tmp_0 = 0;
     } else {
       tmp_0 = static_cast<int32_T>(fmod(tmp_1, 256.0));
     }
 
-    // Gain: '<S45>/Integral Gain'
+    // Gain: '<S43>/Integral Gain'
     autobotscontroller_B.Switch = autobotscontroller_P.Car_Follower_PID_I *
       autobotscontroller_B.error;
 
-    // Signum: '<S39>/SignPreIntegrator'
+    // Signum: '<S37>/SignPreIntegrator'
     if (rtIsNaN(autobotscontroller_B.Switch)) {
-      // DataTypeConversion: '<S39>/DataTypeConv2'
+      // DataTypeConversion: '<S37>/DataTypeConv2'
       tmp_1 = (rtNaN);
     } else if (autobotscontroller_B.Switch < 0.0) {
-      // DataTypeConversion: '<S39>/DataTypeConv2'
+      // DataTypeConversion: '<S37>/DataTypeConv2'
       tmp_1 = -1.0;
     } else {
-      // DataTypeConversion: '<S39>/DataTypeConv2'
+      // DataTypeConversion: '<S37>/DataTypeConv2'
       tmp_1 = (autobotscontroller_B.Switch > 0.0);
     }
 
-    // End of Signum: '<S39>/SignPreIntegrator'
+    // End of Signum: '<S37>/SignPreIntegrator'
 
-    // DataTypeConversion: '<S39>/DataTypeConv2'
+    // DataTypeConversion: '<S37>/DataTypeConv2'
     if (rtIsNaN(tmp_1)) {
       tmp = 0;
     } else {
       tmp = static_cast<int32_T>(fmod(tmp_1, 256.0));
     }
 
-    // Logic: '<S39>/AND3' incorporates:
-    //   DataTypeConversion: '<S39>/DataTypeConv1'
-    //   DataTypeConversion: '<S39>/DataTypeConv2'
-    //   RelationalOperator: '<S39>/Equal1'
+    // Logic: '<S37>/AND3' incorporates:
+    //   DataTypeConversion: '<S37>/DataTypeConv1'
+    //   DataTypeConversion: '<S37>/DataTypeConv2'
+    //   RelationalOperator: '<S37>/Equal1'
 
     autobotscontroller_B.AND3 = (rtb_NotEqual && ((tmp_0 < 0 ?
       static_cast<int32_T>(static_cast<int8_T>(-static_cast<int8_T>(static_cast<
@@ -545,22 +512,22 @@ void autobotscontroller_step(void)
       static_cast<int32_T>(static_cast<int8_T>(-static_cast<int8_T>
       (static_cast<uint8_T>(-static_cast<real_T>(tmp))))) : tmp)));
     if (rtmIsMajorTimeStep(autobotscontroller_M)) {
-      // Memory: '<S39>/Memory'
+      // Memory: '<S37>/Memory'
       autobotscontroller_B.Memory = autobotscontroller_DW.Memory_PreviousInput;
     }
 
-    // Switch: '<S39>/Switch'
+    // Switch: '<S37>/Switch'
     if (autobotscontroller_B.Memory) {
-      // Gain: '<S45>/Integral Gain' incorporates:
-      //   Constant: '<S39>/Constant1'
-      //   Switch: '<S39>/Switch'
+      // Gain: '<S43>/Integral Gain' incorporates:
+      //   Constant: '<S37>/Constant1'
+      //   Switch: '<S37>/Switch'
 
       autobotscontroller_B.Switch = autobotscontroller_P.Constant1_Value_h;
     }
 
-    // End of Switch: '<S39>/Switch'
+    // End of Switch: '<S37>/Switch'
 
-    // Saturate: '<S55>/Saturation'
+    // Saturate: '<S53>/Saturation'
     if (rtb_Sum_j > autobotscontroller_P.Car_Follower_PID_UpperSaturatio) {
       // Merge: '<S1>/Merge'
       rtb_Sum_j = autobotscontroller_P.Car_Follower_PID_UpperSaturatio;
@@ -570,35 +537,37 @@ void autobotscontroller_step(void)
       rtb_Sum_j = autobotscontroller_P.Car_Follower_PID_LowerSaturatio;
     }
 
-    // End of Saturate: '<S55>/Saturation'
+    // End of Saturate: '<S53>/Saturation'
     // End of Outputs for SubSystem: '<S1>/Switch Case: Car Follower Mode'
   }
 
   // End of If: '<S1>/If'
   if (rtmIsMajorTimeStep(autobotscontroller_M)) {
-    // If: '<S1>/Abide By Speed Limit'
+    // If: '<S1>/Abide By Speed Limit' incorporates:
+    //   Constant: '<Root>/Speed Limit'
+
     if (rtsiIsModeUpdateTimeStep(&autobotscontroller_M->solverInfo)) {
       autobotscontroller_DW.AbideBySpeedLimit_ActiveSubsyst = static_cast<int8_T>
-        (!(rtb_Data >= autobotscontroller_B.In1_c.Data));
+        (!(rtb_Data >= autobotscontroller_P.SpeedLimit_Value));
     }
 
     if (autobotscontroller_DW.AbideBySpeedLimit_ActiveSubsyst == 0) {
       // Outputs for IfAction SubSystem: '<S1>/Stop_Acceleratiing' incorporates:
-      //   ActionPort: '<S11>/Action Port'
+      //   ActionPort: '<S9>/Action Port'
 
       // BusAssignment: '<Root>/Bus Assignment' incorporates:
-      //   Constant: '<S11>/Constant'
-      //   SignalConversion generated from: '<S11>/Out1'
+      //   Constant: '<S9>/Constant'
+      //   SignalConversion generated from: '<S9>/Out1'
 
       rtb_BusAssignment.Data = autobotscontroller_P.Constant_Value_l;
 
       // End of Outputs for SubSystem: '<S1>/Stop_Acceleratiing'
     } else {
       // Outputs for IfAction SubSystem: '<S1>/Pass As Normal' incorporates:
-      //   ActionPort: '<S10>/Action Port'
+      //   ActionPort: '<S8>/Action Port'
 
       // BusAssignment: '<Root>/Bus Assignment' incorporates:
-      //   SignalConversion generated from: '<S10>/V1'
+      //   SignalConversion generated from: '<S8>/V1'
 
       rtb_BusAssignment.Data = rtb_Sum_j;
 
@@ -618,10 +587,10 @@ void autobotscontroller_step(void)
     // Update for If: '<S1>/If'
     if (autobotscontroller_DW.If_ActiveSubsystem == 0) {
       // Update for IfAction SubSystem: '<S1>/Switch Case: Car Hunter Mode' incorporates:
-      //   ActionPort: '<S13>/Action Port'
+      //   ActionPort: '<S11>/Action Port'
 
       if (rtmIsMajorTimeStep(autobotscontroller_M)) {
-        // Update for Memory: '<S90>/Memory'
+        // Update for Memory: '<S88>/Memory'
         autobotscontroller_DW.Memory_PreviousInput_g =
           autobotscontroller_B.AND3_g;
       }
@@ -629,10 +598,10 @@ void autobotscontroller_step(void)
       // End of Update for SubSystem: '<S1>/Switch Case: Car Hunter Mode'
 
       // Update for IfAction SubSystem: '<S1>/Switch Case: Car Follower Mode' incorporates:
-      //   ActionPort: '<S12>/Action Port'
+      //   ActionPort: '<S10>/Action Port'
 
     } else if (rtmIsMajorTimeStep(autobotscontroller_M)) {
-      // Update for Memory: '<S39>/Memory'
+      // Update for Memory: '<S37>/Memory'
       autobotscontroller_DW.Memory_PreviousInput = autobotscontroller_B.AND3;
 
       // End of Update for SubSystem: '<S1>/Switch Case: Car Follower Mode'
@@ -696,12 +665,12 @@ void autobotscontroller_derivatives(void)
   switch (autobotscontroller_DW.If_ActiveSubsystem) {
    case 0:
     // Derivatives for IfAction SubSystem: '<S1>/Switch Case: Car Hunter Mode' incorporates:
-    //   ActionPort: '<S13>/Action Port'
+    //   ActionPort: '<S11>/Action Port'
 
-    // Derivatives for Integrator: '<S99>/Integrator'
+    // Derivatives for Integrator: '<S97>/Integrator'
     _rtXdot->Integrator_CSTATE_e = autobotscontroller_B.Switch_k;
 
-    // Derivatives for Integrator: '<S94>/Filter'
+    // Derivatives for Integrator: '<S92>/Filter'
     _rtXdot->Filter_CSTATE_f = autobotscontroller_B.FilterCoefficient_b;
 
     // End of Derivatives for SubSystem: '<S1>/Switch Case: Car Hunter Mode'
@@ -709,12 +678,12 @@ void autobotscontroller_derivatives(void)
 
    case 1:
     // Derivatives for IfAction SubSystem: '<S1>/Switch Case: Car Follower Mode' incorporates:
-    //   ActionPort: '<S12>/Action Port'
+    //   ActionPort: '<S10>/Action Port'
 
-    // Derivatives for Integrator: '<S48>/Integrator'
+    // Derivatives for Integrator: '<S46>/Integrator'
     _rtXdot->Integrator_CSTATE = autobotscontroller_B.Switch;
 
-    // Derivatives for Integrator: '<S43>/Filter'
+    // Derivatives for Integrator: '<S41>/Filter'
     _rtXdot->Filter_CSTATE = autobotscontroller_B.FilterCoefficient;
 
     // End of Derivatives for SubSystem: '<S1>/Switch Case: Car Follower Mode'
@@ -778,15 +747,12 @@ void autobotscontroller_initialize(void)
 
   {
     int32_T i;
-    char_T b_zeroDelimTopic_2[18];
+    char_T b_zeroDelimTopic_1[18];
     char_T b_zeroDelimTopic[17];
-    char_T b_zeroDelimTopic_0[13];
-    char_T b_zeroDelimTopic_1[11];
-    static const char_T b_zeroDelimTopic_3[17] = "/car/state/vel_x";
-    static const char_T b_zeroDelimTopic_4[13] = "/speed_limit";
-    static const char_T b_zeroDelimTopic_5[11] = "/lead_dist";
-    static const char_T b_zeroDelimTopic_6[18] = "/optimal_time_gap";
-    static const char_T b_zeroDelimTopic_7[18] = "/egocar/cmd_accel";
+    char_T b_zeroDelimTopic_0[11];
+    static const char_T b_zeroDelimTopic_2[17] = "/car/state/vel_x";
+    static const char_T b_zeroDelimTopic_3[11] = "/lead_dist";
+    static const char_T b_zeroDelimTopic_4[18] = "/egocar/cmd_accel";
 
     // Start for If: '<S1>/If1'
     autobotscontroller_DW.If1_ActiveSubsystem = -1;
@@ -803,8 +769,8 @@ void autobotscontroller_initialize(void)
 
     // SystemInitialize for Atomic SubSystem: '<Root>/Subscribe'
     // SystemInitialize for Enabled SubSystem: '<S4>/Enabled Subsystem'
-    // SystemInitialize for SignalConversion generated from: '<S116>/In1' incorporates:
-    //   Outport: '<S116>/Out1'
+    // SystemInitialize for SignalConversion generated from: '<S114>/In1' incorporates:
+    //   Outport: '<S114>/Out1'
 
     autobotscontroller_B.In1_b = autobotscontroller_P.Out1_Y0;
 
@@ -814,7 +780,7 @@ void autobotscontroller_initialize(void)
     autobotscontroller_DW.obj_g.matlabCodegenIsDeleted = false;
     autobotscontroller_DW.obj_g.isInitialized = 1;
     for (i = 0; i < 17; i++) {
-      b_zeroDelimTopic[i] = b_zeroDelimTopic_3[i];
+      b_zeroDelimTopic[i] = b_zeroDelimTopic_2[i];
     }
 
     Sub_autobotscontroller_36.createSubscriber(&b_zeroDelimTopic[0], 1);
@@ -823,34 +789,12 @@ void autobotscontroller_initialize(void)
     // End of Start for MATLABSystem: '<S4>/SourceBlock'
     // End of SystemInitialize for SubSystem: '<Root>/Subscribe'
 
-    // SystemInitialize for Atomic SubSystem: '<Root>/Subscribe2'
-    // SystemInitialize for Enabled SubSystem: '<S6>/Enabled Subsystem'
-    // SystemInitialize for SignalConversion generated from: '<S118>/In1' incorporates:
-    //   Outport: '<S118>/Out1'
-
-    autobotscontroller_B.In1_c = autobotscontroller_P.Out1_Y0_dp;
-
-    // End of SystemInitialize for SubSystem: '<S6>/Enabled Subsystem'
-
-    // Start for MATLABSystem: '<S6>/SourceBlock'
-    autobotscontroller_DW.obj_n.matlabCodegenIsDeleted = false;
-    autobotscontroller_DW.obj_n.isInitialized = 1;
-    for (i = 0; i < 13; i++) {
-      b_zeroDelimTopic_0[i] = b_zeroDelimTopic_4[i];
-    }
-
-    Sub_autobotscontroller_121.createSubscriber(&b_zeroDelimTopic_0[0], 1);
-    autobotscontroller_DW.obj_n.isSetupComplete = true;
-
-    // End of Start for MATLABSystem: '<S6>/SourceBlock'
-    // End of SystemInitialize for SubSystem: '<Root>/Subscribe2'
-
     // SystemInitialize for Atomic SubSystem: '<Root>/Subscribe1'
     // SystemInitialize for Enabled SubSystem: '<S5>/Enabled Subsystem'
-    // SystemInitialize for SignalConversion generated from: '<S117>/In1' incorporates:
-    //   Outport: '<S117>/Out1'
+    // SystemInitialize for SignalConversion generated from: '<S115>/In1' incorporates:
+    //   Outport: '<S115>/Out1'
 
-    autobotscontroller_B.In1_p = autobotscontroller_P.Out1_Y0_d;
+    autobotscontroller_B.In1 = autobotscontroller_P.Out1_Y0_d;
 
     // End of SystemInitialize for SubSystem: '<S5>/Enabled Subsystem'
 
@@ -858,62 +802,40 @@ void autobotscontroller_initialize(void)
     autobotscontroller_DW.obj_j.matlabCodegenIsDeleted = false;
     autobotscontroller_DW.obj_j.isInitialized = 1;
     for (i = 0; i < 11; i++) {
-      b_zeroDelimTopic_1[i] = b_zeroDelimTopic_5[i];
+      b_zeroDelimTopic_0[i] = b_zeroDelimTopic_3[i];
     }
 
-    Sub_autobotscontroller_48.createSubscriber(&b_zeroDelimTopic_1[0], 1);
+    Sub_autobotscontroller_48.createSubscriber(&b_zeroDelimTopic_0[0], 1);
     autobotscontroller_DW.obj_j.isSetupComplete = true;
 
     // End of Start for MATLABSystem: '<S5>/SourceBlock'
     // End of SystemInitialize for SubSystem: '<Root>/Subscribe1'
 
-    // SystemInitialize for Atomic SubSystem: '<Root>/Subscribe3'
-    // SystemInitialize for Enabled SubSystem: '<S7>/Enabled Subsystem'
-    // SystemInitialize for SignalConversion generated from: '<S119>/In1' incorporates:
-    //   Outport: '<S119>/Out1'
-
-    autobotscontroller_B.In1 = autobotscontroller_P.Out1_Y0_p;
-
-    // End of SystemInitialize for SubSystem: '<S7>/Enabled Subsystem'
-
-    // Start for MATLABSystem: '<S7>/SourceBlock'
-    autobotscontroller_DW.obj_b.matlabCodegenIsDeleted = false;
-    autobotscontroller_DW.obj_b.isInitialized = 1;
-    for (i = 0; i < 18; i++) {
-      b_zeroDelimTopic_2[i] = b_zeroDelimTopic_6[i];
-    }
-
-    Sub_autobotscontroller_123.createSubscriber(&b_zeroDelimTopic_2[0], 1);
-    autobotscontroller_DW.obj_b.isSetupComplete = true;
-
-    // End of Start for MATLABSystem: '<S7>/SourceBlock'
-    // End of SystemInitialize for SubSystem: '<Root>/Subscribe3'
-
     // SystemInitialize for IfAction SubSystem: '<S1>/Switch Case: Car Hunter Mode' 
-    // InitializeConditions for Integrator: '<S99>/Integrator'
+    // InitializeConditions for Integrator: '<S97>/Integrator'
     autobotscontroller_X.Integrator_CSTATE_e =
       autobotscontroller_P.Car_Hunter_PID_InitialConditi_c;
 
-    // InitializeConditions for Integrator: '<S94>/Filter'
+    // InitializeConditions for Integrator: '<S92>/Filter'
     autobotscontroller_X.Filter_CSTATE_f =
       autobotscontroller_P.Car_Hunter_PID_InitialCondition;
 
-    // InitializeConditions for Memory: '<S90>/Memory'
+    // InitializeConditions for Memory: '<S88>/Memory'
     autobotscontroller_DW.Memory_PreviousInput_g =
       autobotscontroller_P.Memory_InitialCondition;
 
     // End of SystemInitialize for SubSystem: '<S1>/Switch Case: Car Hunter Mode' 
 
     // SystemInitialize for IfAction SubSystem: '<S1>/Switch Case: Car Follower Mode' 
-    // InitializeConditions for Integrator: '<S48>/Integrator'
+    // InitializeConditions for Integrator: '<S46>/Integrator'
     autobotscontroller_X.Integrator_CSTATE =
       autobotscontroller_P.Car_Follower_PID_InitialCondi_d;
 
-    // InitializeConditions for Integrator: '<S43>/Filter'
+    // InitializeConditions for Integrator: '<S41>/Filter'
     autobotscontroller_X.Filter_CSTATE =
       autobotscontroller_P.Car_Follower_PID_InitialConditi;
 
-    // InitializeConditions for Memory: '<S39>/Memory'
+    // InitializeConditions for Memory: '<S37>/Memory'
     autobotscontroller_DW.Memory_PreviousInput =
       autobotscontroller_P.Memory_InitialCondition_d;
 
@@ -924,10 +846,10 @@ void autobotscontroller_initialize(void)
     autobotscontroller_DW.obj.matlabCodegenIsDeleted = false;
     autobotscontroller_DW.obj.isInitialized = 1;
     for (i = 0; i < 18; i++) {
-      b_zeroDelimTopic_2[i] = b_zeroDelimTopic_7[i];
+      b_zeroDelimTopic_1[i] = b_zeroDelimTopic_4[i];
     }
 
-    Pub_autobotscontroller_37.createPublisher(&b_zeroDelimTopic_2[0], 1);
+    Pub_autobotscontroller_37.createPublisher(&b_zeroDelimTopic_1[0], 1);
     autobotscontroller_DW.obj.isSetupComplete = true;
 
     // End of Start for MATLABSystem: '<S3>/SinkBlock'
@@ -947,15 +869,6 @@ void autobotscontroller_terminate(void)
   // End of Terminate for MATLABSystem: '<S4>/SourceBlock'
   // End of Terminate for SubSystem: '<Root>/Subscribe'
 
-  // Terminate for Atomic SubSystem: '<Root>/Subscribe2'
-  // Terminate for MATLABSystem: '<S6>/SourceBlock'
-  if (!autobotscontroller_DW.obj_n.matlabCodegenIsDeleted) {
-    autobotscontroller_DW.obj_n.matlabCodegenIsDeleted = true;
-  }
-
-  // End of Terminate for MATLABSystem: '<S6>/SourceBlock'
-  // End of Terminate for SubSystem: '<Root>/Subscribe2'
-
   // Terminate for Atomic SubSystem: '<Root>/Subscribe1'
   // Terminate for MATLABSystem: '<S5>/SourceBlock'
   if (!autobotscontroller_DW.obj_j.matlabCodegenIsDeleted) {
@@ -964,15 +877,6 @@ void autobotscontroller_terminate(void)
 
   // End of Terminate for MATLABSystem: '<S5>/SourceBlock'
   // End of Terminate for SubSystem: '<Root>/Subscribe1'
-
-  // Terminate for Atomic SubSystem: '<Root>/Subscribe3'
-  // Terminate for MATLABSystem: '<S7>/SourceBlock'
-  if (!autobotscontroller_DW.obj_b.matlabCodegenIsDeleted) {
-    autobotscontroller_DW.obj_b.matlabCodegenIsDeleted = true;
-  }
-
-  // End of Terminate for MATLABSystem: '<S7>/SourceBlock'
-  // End of Terminate for SubSystem: '<Root>/Subscribe3'
 
   // Terminate for Atomic SubSystem: '<Root>/Publish'
   // Terminate for MATLABSystem: '<S3>/SinkBlock'

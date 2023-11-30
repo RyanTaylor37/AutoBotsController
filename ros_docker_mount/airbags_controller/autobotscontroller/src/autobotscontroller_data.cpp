@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'autobotscontroller'.
 //
-// Model version                  : 1.10
+// Model version                  : 1.12
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Thu Nov 30 00:03:15 2023
+// C/C++ source code generated on : Thu Nov 30 11:27:39 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Generic->Unspecified (assume 32-bit Generic)
@@ -21,90 +21,90 @@
 // Block parameters (default storage)
 P_autobotscontroller_T autobotscontroller_P = {
   // Mask Parameter: Car_Hunter_PID_D
-  //  Referenced by: '<S93>/Derivative Gain'
+  //  Referenced by: '<S91>/Derivative Gain'
 
   0.0,
 
   // Mask Parameter: Car_Follower_PID_D
-  //  Referenced by: '<S42>/Derivative Gain'
+  //  Referenced by: '<S40>/Derivative Gain'
 
   18.9516332486037,
 
   // Mask Parameter: Car_Hunter_PID_I
-  //  Referenced by: '<S96>/Integral Gain'
+  //  Referenced by: '<S94>/Integral Gain'
 
   0.0,
 
   // Mask Parameter: Car_Follower_PID_I
-  //  Referenced by: '<S45>/Integral Gain'
+  //  Referenced by: '<S43>/Integral Gain'
 
   1.1236136490315,
 
   // Mask Parameter: Car_Hunter_PID_InitialCondition
-  //  Referenced by: '<S94>/Filter'
+  //  Referenced by: '<S92>/Filter'
 
   0.0,
 
   // Mask Parameter: Car_Follower_PID_InitialConditi
-  //  Referenced by: '<S43>/Filter'
+  //  Referenced by: '<S41>/Filter'
 
   0.0,
 
   // Mask Parameter: Car_Hunter_PID_InitialConditi_c
-  //  Referenced by: '<S99>/Integrator'
+  //  Referenced by: '<S97>/Integrator'
 
   0.0,
 
   // Mask Parameter: Car_Follower_PID_InitialCondi_d
-  //  Referenced by: '<S48>/Integrator'
+  //  Referenced by: '<S46>/Integrator'
 
   0.0,
 
   // Mask Parameter: Car_Hunter_PID_LowerSaturationL
   //  Referenced by:
-  //    '<S106>/Saturation'
-  //    '<S92>/DeadZone'
+  //    '<S104>/Saturation'
+  //    '<S90>/DeadZone'
 
   -3.0,
 
   // Mask Parameter: Car_Follower_PID_LowerSaturatio
   //  Referenced by:
-  //    '<S55>/Saturation'
-  //    '<S41>/DeadZone'
+  //    '<S53>/Saturation'
+  //    '<S39>/DeadZone'
 
   -3.0,
 
   // Mask Parameter: Car_Hunter_PID_N
-  //  Referenced by: '<S102>/Filter Coefficient'
+  //  Referenced by: '<S100>/Filter Coefficient'
 
   100.0,
 
   // Mask Parameter: Car_Follower_PID_N
-  //  Referenced by: '<S51>/Filter Coefficient'
+  //  Referenced by: '<S49>/Filter Coefficient'
 
   10.8821013151988,
 
   // Mask Parameter: Car_Hunter_PID_P
-  //  Referenced by: '<S104>/Proportional Gain'
+  //  Referenced by: '<S102>/Proportional Gain'
 
   0.025,
 
   // Mask Parameter: Car_Follower_PID_P
-  //  Referenced by: '<S53>/Proportional Gain'
+  //  Referenced by: '<S51>/Proportional Gain'
 
   10.2457458282461,
 
   // Mask Parameter: Car_Hunter_PID_UpperSaturationL
   //  Referenced by:
-  //    '<S106>/Saturation'
-  //    '<S92>/DeadZone'
+  //    '<S104>/Saturation'
+  //    '<S90>/DeadZone'
 
   1.5,
 
   // Mask Parameter: Car_Follower_PID_UpperSaturatio
   //  Referenced by:
-  //    '<S55>/Saturation'
-  //    '<S41>/DeadZone'
+  //    '<S53>/Saturation'
+  //    '<S39>/DeadZone'
 
   1.5,
 
@@ -116,7 +116,7 @@ P_autobotscontroller_T autobotscontroller_P = {
   },
 
   // Computed Parameter: Out1_Y0
-  //  Referenced by: '<S116>/Out1'
+  //  Referenced by: '<S114>/Out1'
 
   {
     0.0                                // Data
@@ -130,7 +130,7 @@ P_autobotscontroller_T autobotscontroller_P = {
   },
 
   // Computed Parameter: Out1_Y0_d
-  //  Referenced by: '<S117>/Out1'
+  //  Referenced by: '<S115>/Out1'
 
   {
     0.0                                // Data
@@ -143,71 +143,53 @@ P_autobotscontroller_T autobotscontroller_P = {
     0.0                                // Data
   },
 
-  // Computed Parameter: Out1_Y0_dp
-  //  Referenced by: '<S118>/Out1'
-
-  {
-    0.0                                // Data
-  },
-
-  // Computed Parameter: Constant_Value_gg
-  //  Referenced by: '<S6>/Constant'
-
-  {
-    0.0                                // Data
-  },
-
-  // Computed Parameter: Out1_Y0_p
-  //  Referenced by: '<S119>/Out1'
-
-  {
-    0.0                                // Data
-  },
-
-  // Computed Parameter: Constant_Value_i
-  //  Referenced by: '<S7>/Constant'
-
-  {
-    0.0                                // Data
-  },
-
   // Expression: 0
-  //  Referenced by: '<S11>/Constant'
+  //  Referenced by: '<S9>/Constant'
 
   0.0,
 
   // Expression: 0
-  //  Referenced by: '<S90>/Constant1'
+  //  Referenced by: '<S88>/Constant1'
 
   0.0,
 
   // Expression: 0
-  //  Referenced by: '<S90>/ZeroGain'
+  //  Referenced by: '<S88>/ZeroGain'
 
   0.0,
 
   // Expression: 0
-  //  Referenced by: '<S39>/Constant1'
+  //  Referenced by: '<S37>/Constant1'
 
   0.0,
 
   // Expression: 0
-  //  Referenced by: '<S39>/ZeroGain'
+  //  Referenced by: '<S37>/ZeroGain'
 
   0.0,
 
   // Expression: 0.1
-  //  Referenced by: '<S9>/Constant'
+  //  Referenced by: '<S7>/Constant'
 
   0.1,
 
+  // Expression: 80
+  //  Referenced by: '<Root>/Speed Limit'
+
+  80.0,
+
+  // Expression: 3
+  //  Referenced by: '<Root>/Time Gap'
+
+  3.0,
+
   // Computed Parameter: Memory_InitialCondition
-  //  Referenced by: '<S90>/Memory'
+  //  Referenced by: '<S88>/Memory'
 
   false,
 
   // Computed Parameter: Memory_InitialCondition_d
-  //  Referenced by: '<S39>/Memory'
+  //  Referenced by: '<S37>/Memory'
 
   false
 };
